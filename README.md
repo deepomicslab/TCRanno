@@ -51,8 +51,8 @@ python3 plot_landscape.py --tcr2tcr example_tcr2tcr_output.tsv --outprefix examp
 --infile: 
     input file name (path), can be either a repertoire file (including at least the cdr3_aa column) or a single-column (cdr3_aa) file
 
---outfile: 
-    the name (path) of the tcr2tcr output file to be generated
+--outprefix: 
+    the prefix of the tcr2tcr output file to be generated
 
 --encoder: 
     the path to the model that is used to generate embeddings (i.e., discriminative features) as a component of the tcr2tcr algorithm. Default is the pretrained model.
