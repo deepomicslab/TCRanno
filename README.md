@@ -70,7 +70,7 @@ python3 plot_landscape.py --tcr2tcr example_tcr2tcr_output.tsv --outprefix examp
     whether the input file has a header, defualt=False.
 
 --cdr3_aa_col: 
-    the column name (a string) or the column index (a number starting from 0, i.e., 0 for the first column) for the cdr3_aa column. The programme will terminate if cdr3_aa_col is not given.
+    the column name (a string) or the column index (a number starting from 0, i.e., 0 for the first column) for the cdr3_aa column. If cdr3_aa_col is not given, the programme automatically take it as a single-column file without header.
 
 --frequency: 
     whether the input file has a frequency column, defualt=False.
