@@ -10,7 +10,7 @@ pip3 install tensorflow levenshtein pandas comut palettable \
 pip3 install tcranno
 
 ## Quick Start
-Step 1: run tcr2tcr (qualitative annotations) for input repertoire
+Step 1: run tcr2tcr (qualitative annotations) for input repertoire.
 ```
 from tcranno import *
 model = model_predict.load_encoder()
@@ -29,21 +29,21 @@ core_analysis.tcr2tcr(infile=infile, outprefix=outprefix, encoder=model, DB=DB, 
 # If single-column input with no header, only a list of CDR3 sequences, one sequence per row
 core_analysis.tcr2tcr(infile=infile, outprefix=outprefix, encoder=model, DB=DB, DB_VDJ=DB_VDJ, AO_map=AO_map, header=False)
 ```
-Step 2: run tcr2ept, tcr2ag, tcr2org (quantitative annotations) based on tcr2tcr output
+Step 2: run tcr2ept, tcr2ag, tcr2org (quantitative annotations) based on tcr2tcr output generated in Step 1.
 ```
 tcr2tcr_output = 'example_tcr2tcr_output.tsv'
 repertoire_analysis.tcr2ept(tcr2tcr_output, outprefix, AO_map=AO_map, is_tcr2tcr=True, k=30, limit=1e-4)
 repertoire_analysis.tcr2ag(tcr2tcr_output, outprefix, AO_map=AO_map, is_tcr2tcr=True, k=20, limit=1e-4)
 repertoire_analysis.tcr2org(tcr2tcr_output, outprefix, AO_map=AO_map, is_tcr2tcr=True, k=10, limit=1e-4)
 ```
-Alternatively, if you don't want to run the above commands within python environment, you can run the wrappers below that do the same thing:
+Alternatively, if you don't want to run the above commands within python environment, you can run the wrappers below that do the same thing.
 ```
 python3 run_tcr2tcr.py --infile example_input_repertoire.tsv --outprefix example --cdr3_aa_col 0 --frequency_col 1 --k 10
 python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --outprefix example --anno_type tcr2ept --k 30
 python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --outprefix example --anno_type tcr2ag --k 20
 python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --outprefix example --anno_type tcr2org --k 10
 ```
-Optional: repertoire specificity landscape visualization (require Comut)
+Optional: repertoire specificity landscape visualization (require Comut).
 ```
 #choosing 'all' for anno_type will produce three plots (tcr2ept, tcr2ag, tcr2org)
 python3 plot_landscape.py --tcr2tcr example_tcr2tcr_output.tsv --outprefix example --tcr2ept example_tcr2ept.tsv --tcr2ag example_tcr2ag.tsv --tcr2org example_tcr2org.tsv --anno_type all
