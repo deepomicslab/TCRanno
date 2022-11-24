@@ -19,11 +19,15 @@ infile = 'example/example_input_repertoire.tsv'
 outprefix = 'example'
 core_analysis.tcr2tcr(infile=infile, outprefix=outprefix, encoder=model, DB=DB, DB_VDJ=DB_VDJ, AO_map=AO_map, header=True, cdr3_aa_col=0, frequency=True, frequency_col=1, sep='\t', k=10)
 
-# single-column input (no header, only a list of CDR3 sequences, one sequence per row)
-core_analysis.tcr2tcr(infile, outprefix, model, DB, DB_VDJ, AO_map, header=False, k=10)
-
 # speed up using multi-processing
-core_analysis.tcr2tcr(infile, outprefix, model, DB, DB_VDJ, AO_map, header=True, cdr3_aa_col=0, frequency=True, frequency_col=1, sep='\t', k=10, thread = -1)
+core_analysis.tcr2tcr(infile=infile, outprefix=outprefix, encoder=model, DB=DB, DB_VDJ=DB_VDJ, AO_map=AO_map, header=True, cdr3_aa_col=0, frequency=True, frequency_col=1, sep='\t', k=10, thread = -1)
+
+# If the input file has a header and cdr3_aa column, but no frequency/count column
+aa_col_name = 'name-of-the-cdr3-aa-column'
+core_analysis.tcr2tcr(infile=infile, outprefix=outprefix, encoder=model, DB=DB, DB_VDJ=DB_VDJ, AO_map=AO_map, header=True, cdr3_aa_col=aa_col_name, sep='\t', k=10)
+
+# If single-column input with no header, only a list of CDR3 sequences, one sequence per row
+core_analysis.tcr2tcr(infile=infile, outprefix=outprefix, encoder=model, DB=DB, DB_VDJ=DB_VDJ, AO_map=AO_map, header=False)
 ```
 Step 2: run tcr2ept, tcr2ag, tcr2org (quantitative annotations) based on tcr2tcr output
 ```
