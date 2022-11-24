@@ -16,18 +16,18 @@ from tcranno import *
 model = model_predict.load_encoder()
 DB, DB_VDJ, AO_map = core_analysis.load_DB(ref_DB='IEDB')
 infile = 'example/example_input_repertoire.tsv'
-tcr2tcr_output = 'example_tcr2tcr_output.tsv'
-core_analysis.tcr2tcr(infile=infile, outfile=tcr2tcr_output, encoder=model, DB=DB, DB_VDJ=DB_VDJ, AO_map=AO_map, header=True, cdr3_aa_col=0, frequency=True, frequency_col=1, sep='\t', k=10)
+outprefix = 'example'
+core_analysis.tcr2tcr(infile=infile, outprefix=outprefix, encoder=model, DB=DB, DB_VDJ=DB_VDJ, AO_map=AO_map, header=True, cdr3_aa_col=0, frequency=True, frequency_col=1, sep='\t', k=10)
 
 # single-column input (no header, only a list of CDR3 sequences, one sequence per row)
-core_analysis.tcr2tcr(infile, tcr2tcr_output, model, DB, DB_VDJ, AO_map, header=False, k=10)
+core_analysis.tcr2tcr(infile, outprefix, model, DB, DB_VDJ, AO_map, header=False, k=10)
 
 # speed up using multi-processing
-#core_analysis.tcr2tcr(infile, tcr2tcr_output, model, DB, DB_VDJ, AO_map, header=True, cdr3_aa_col=0, frequency=True, frequency_col=1, sep='\t', k=10, thread = -1)
+core_analysis.tcr2tcr(infile, outprefix, model, DB, DB_VDJ, AO_map, header=True, cdr3_aa_col=0, frequency=True, frequency_col=1, sep='\t', k=10, thread = -1)
 ```
 Step 2: run tcr2ept, tcr2ag, tcr2org (quantitative annotations) based on tcr2tcr output
 ```
-outprefix = 'example'
+tcr2tcr_output = 'example_tcr2tcr_output.tsv'
 repertoire_analysis.tcr2ept(tcr2tcr_output, outprefix, AO_map=AO_map, is_tcr2tcr=True, k=30, limit=1e-4)
 repertoire_analysis.tcr2ag(tcr2tcr_output, outprefix, AO_map=AO_map, is_tcr2tcr=True, k=20, limit=1e-4)
 repertoire_analysis.tcr2org(tcr2tcr_output, outprefix, AO_map=AO_map, is_tcr2tcr=True, k=10, limit=1e-4)
@@ -46,7 +46,7 @@ python3 plot_landscape.py --tcr2tcr example_tcr2tcr_output.tsv --outprefix examp
 ```
 
 ## Parameters
-1. core_analysis.tcr2tcr(...)
+1. core_analysis.tcr2tcr
 ```
 --infile: 
     input file name (path), can be either a repertoire file (including at least the cdr3_aa column) or a single-column (cdr3_aa) file
@@ -88,13 +88,13 @@ python3 plot_landscape.py --tcr2tcr example_tcr2tcr_output.tsv --outprefix examp
     the delimitor of the input file, defualt='\s+'.
 
 --k: 
-    the number of closest TCRs within the reference database to be output for each query if not completely matching. Defualt=10.
+    the number of closest TCRs within the reference database to be output for each query if not completely matching. Defualt=10. Note that the quantitative annotations (tcr2ept/tcr2ag/tcr2org) only take into account the best choice (k=1) for each input TCR sequence, so k=1 will be enough for the subsequent steps. Choose k=1 if you don't need multiple matched TCR sequences for each input, which can save space and time.
 
 --thread: 
     the number of threads (cpus) to be used, default=1. Specify thread=-1 for all cpus.
 ```
 
-2. repertoire_analysis.tcr2ept(...), repertoire_analysis.tcr2ag(...), repertoire_analysis.tcr2org(...)
+2. repertoire_analysis.tcr2ept, repertoire_analysis.tcr2ag, repertoire_analysis.tcr2org
 ```
 --infile: 
     input file name (path), a tcr2tcr output file
