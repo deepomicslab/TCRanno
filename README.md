@@ -1,5 +1,5 @@
 # TCRanno
-Quantitative and Qualitative Annotations of TCR Repertoire Specificity
+Qualitative and Quantitative Annotations of TCR Repertoire Specificity
 
 ## Requirements
 Python>=3.8 \
