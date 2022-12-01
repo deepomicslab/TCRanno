@@ -29,6 +29,8 @@ core_analysis.tcr2tcr(infile=infile, outprefix=outprefix, encoder=model, DB=DB, 
 # If single-column input with no header, only a list of CDR3 sequences, one sequence per row
 core_analysis.tcr2tcr(infile=infile, outprefix=outprefix, encoder=model, DB=DB, DB_VDJ=DB_VDJ, AO_map=AO_map, header=False)
 ```
+Example tcr2tcr output format (see all example output files under /example):
+
 ![image](https://github.com/LuoPangpang/TCRanno_test/blob/main/imgs/tcr2tcr_output_format.PNG)
 
 Step 2: run tcr2ept, tcr2ag, tcr2org (quantitative annotations) based on tcr2tcr output generated in Step 1.
@@ -45,8 +47,9 @@ python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --o
 python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --outprefix example --anno_type tcr2ag --k 20
 python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --outprefix example --anno_type tcr2org --k 10
 ```
+Example tcr2ag output format (see all example output files under /example):
 
-
+![image](https://github.com/LuoPangpang/TCRanno_test/blob/main/imgs/tcr2ag_output_format.PNG)
 
 Optional: repertoire specificity landscape visualization (require Comut).
 ```
