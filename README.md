@@ -55,7 +55,7 @@ Example tcr2ag output format (see all example output files under /example):
 
 ![image](https://github.com/LuoPangpang/TCRanno_test/blob/main/imgs/tcr2ag_output_format.PNG)
 
-Optional: repertoire specificity landscape visualization (require Comut).
+Step 3 (Optional): repertoire specificity landscape visualization (require Comut).
 ```
 #choosing 'all' for anno_type will produce three plots (tcr2ept, tcr2ag, tcr2org)
 python3 plot_landscape.py --tcr2tcr example_tcr2tcr_output.tsv --outprefix example --tcr2ept example_tcr2ept.tsv --tcr2ag example_tcr2ag.tsv --tcr2org example_tcr2org.tsv --anno_type all
