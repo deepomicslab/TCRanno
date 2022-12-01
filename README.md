@@ -56,6 +56,9 @@ Optional: repertoire specificity landscape visualization (require Comut).
 #choosing 'all' for anno_type will produce three plots (tcr2ept, tcr2ag, tcr2org)
 python3 plot_landscape.py --tcr2tcr example_tcr2tcr_output.tsv --outprefix example --tcr2ept example_tcr2ept.tsv --tcr2ag example_tcr2ag.tsv --tcr2org example_tcr2org.tsv --anno_type all
 ```
+Example tcr2org visualization plot (see all example plots under /example):
+
+![image](https://github.com/LuoPangpang/TCRanno_test/blob/main/example/example_tcr2org.png)
 
 ## Parameters
 1. core_analysis.tcr2tcr
