@@ -62,7 +62,7 @@ python3 plot_landscape.py --tcr2tcr example_tcr2tcr_output.tsv --outprefix examp
 ```
 Example tcr2org visualization plot (see all example plots under /demo):
 
-![image](https://github.com/LuoPangpang/TCRanno_test/blob/main/example/example_tcr2org.png)
+![image](https://github.com/LuoPangpang/TCRanno_test/blob/main/demo/example_tcr2org.png)
 
 ## Parameters
 1. core_analysis.tcr2tcr
