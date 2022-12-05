@@ -33,7 +33,7 @@ Log message (the CUDA_ERROR_NO_DEVICE warning will occur if no gpu is detected, 
 
 ![image](https://github.com/LuoPangpang/TCRanno_test/blob/main/imgs/log.PNG)
 
-Example tcr2tcr output format (see all example output files under /example):
+Example tcr2tcr output format (see all example output files under /demo):
 
 ![image](https://github.com/LuoPangpang/TCRanno_test/blob/main/imgs/tcr2tcr_output_format.PNG)
 
@@ -51,7 +51,7 @@ python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --o
 python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --outprefix example --anno_type tcr2ag --k 20
 python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --outprefix example --anno_type tcr2org --k 10
 ```
-Example tcr2ag output format (see all example output files under /example):
+Example tcr2ag output format (see all example output files under /demo):
 
 ![image](https://github.com/LuoPangpang/TCRanno_test/blob/main/imgs/tcr2ag_output_format.PNG)
 
@@ -60,7 +60,7 @@ Step 3 (Optional): repertoire specificity landscape visualization (require Comut
 #choosing 'all' for anno_type will produce three plots (tcr2ept, tcr2ag, tcr2org)
 python3 plot_landscape.py --tcr2tcr example_tcr2tcr_output.tsv --outprefix example --tcr2ept example_tcr2ept.tsv --tcr2ag example_tcr2ag.tsv --tcr2org example_tcr2org.tsv --anno_type all
 ```
-Example tcr2org visualization plot (see all example plots under /example):
+Example tcr2org visualization plot (see all example plots under /demo):
 
 ![image](https://github.com/LuoPangpang/TCRanno_test/blob/main/example/example_tcr2org.png)
 
