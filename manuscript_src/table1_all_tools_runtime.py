@@ -122,7 +122,7 @@ def run_tcrmatch(infile,outfile):
 
 if __name__ == '__main__':
     size = int(sys.argv[1])
-    infile = '/mnt/d/TCR_data/healthy587_first10000tcr_pools.tsv'
+    infile = 'TCR_data/healthy587_first10000tcr_pools.tsv'
     df = pd.read_csv(infile,sep='\t')
     df2 = df.sample(n = size)
     testfile = 'random_repertoire_size_'+str(size)+'.csv'
