@@ -126,7 +126,7 @@ if __name__ == '__main__':
     df = pd.read_csv(infile,sep='\t')
     df2 = df.sample(n = size)
     testfile = 'random_repertoire_size_'+str(size)+'.csv'
-    tcr2tcr_out = 'tcr2tcr.runtime.size.'+str(size)+'.tsv'
+    tcr2tcr_out = 'runtime.size.'+str(size)+'_tcr2tcr_output.tsv'
     tcrmatch_out = 'tcrmatch.runtime.size.'+str(size)+'.tsv'
     tcrdist_out = 'tcrdist.runtime.size.'+str(size)+'.tsv'
     nw_out = 'nwhamming.runtime.size.'+str(size)+'.tsv'
@@ -135,8 +135,8 @@ if __name__ == '__main__':
     
     start = time.time()
     encoder1 = model_predict.load_encoder()
-    IEDB, IEDB_VDJ, AO_key, AO_map = core_analysis.load_DB(ref_DB='IEDB')
-    core_analysis.tcr2tcr(testfile, tcr2tcr_out, encoder1, IEDB, IEDB_VDJ, AO_key, AO_map, header=False, cdr3_aa_col=None, frequency=False, frequency_col=None, count=False, count_col=None, sep=None, k=10, thread=-1)
+    IEDB, IEDB_VDJ, AO_map = core_analysis.load_DB(ref_DB='IEDB')
+    core_analysis.tcr2tcr(testfile, 'runtime.size.'+str(size)+', encoder1, IEDB, IEDB_VDJ, AO_map, header=False, cdr3_aa_col=None, frequency=False, frequency_col=None, count=False, count_col=None, sep=None, k=10, thread=-1)
     end = time.time()
     elapsed = end - start
     print('TCRanno Runtime: %.2f seconds.' % elapsed)
