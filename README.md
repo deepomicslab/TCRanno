@@ -2,7 +2,7 @@
 Qualitative and Quantitative Annotations of TCR Repertoire Specificity
 
 ## Requirements
-Python>=3.8 \
+Python>=3.7.6 \
 tensorflow>=2.4.1, levenshtein, pandas, matplotlib, comut, palettable
 
 ## Installation
