@@ -29,7 +29,7 @@ core_analysis.tcr2tcr(infile=infile, outprefix=outprefix, encoder=model, DB=DB, 
 # If single-column input with no header, only a list of CDR3 sequences, one sequence per row
 core_analysis.tcr2tcr(infile=infile, outprefix=outprefix, encoder=model, DB=DB, DB_VDJ=DB_VDJ, AO_map=AO_map, header=False)
 ```
-Log message (the CUDA_ERROR_NO_DEVICE warning will occur if no gpu is detected, which is fine as we only need cpu to run TCRanno):
+Log message (the CUDA_ERROR_NO_DEVICE warning may occur if no gpu is detected, which is fine as we only need cpu to run TCRanno):
 
 ![image](https://github.com/LuoPangpang/TCRanno_test/blob/main/imgs/log.PNG)
 
