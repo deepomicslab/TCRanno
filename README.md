@@ -10,7 +10,7 @@ pip3 install tensorflow levenshtein pandas comut palettable \
 pip3 install tcranno
 
 ## Quick Start
-Step 1: run tcr2tcr (qualitative annotations) for input repertoire.
+Step 1: run tcr2tcr (qualitative annotations) for input repertoire. The 'example' directory can be find under the path where tcranno is installed.
 ```
 from tcranno import *
 model = model_predict.load_encoder()
