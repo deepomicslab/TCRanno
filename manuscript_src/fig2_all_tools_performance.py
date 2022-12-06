@@ -1,4 +1,9 @@
 # run under TCRMatch directory; replace TCRMatch's orginal IEDB_data.tsv with benchmark/IEDB_data_benchmark_TCRMatch.tsv
+# python3 fig2_all_tools_performance.py benchmark/FLU.cdr3s.txt benchmark/Influenza-M1-filtered.pkl Flu
+# python3 fig2_all_tools_performance.py benchmark/SARS2.cdr3s.txt benchmark/filtered_SRAS2_for_test.pkl SARS-CoV2
+# python3 fig2_all_tools_performance.py benchmark/EBV.cdr3s.txt benchmark/EBV_2ept_set.pkl EBV
+# python3 fig2_all_tools_performance.py benchmark/YF.cdr3s.txt benchmark/Yellow_fever_set.pkl YFV
+
 import sys, time, pickle, math, subprocess
 import pandas as pd
 from matplotlib import pyplot as plt
