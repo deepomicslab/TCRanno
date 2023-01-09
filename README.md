@@ -51,9 +51,9 @@ python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --o
 python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --outprefix example --anno_type tcr2ag --k 20
 python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --outprefix example --anno_type tcr2org --k 10
 ```
-Example tcr2ag output format (see all example output files under /demo directory at the main github page):
+Example tcr2org output format (see all example output files under /demo directory at the main github page):
 
-![image](https://github.com/LuoPangpang/TCRanno_test/blob/main/imgs/tcr2ag_output_format.PNG)
+![image](https://github.com/deepomicslab/TCRanno/blob/main/imgs/tcr2org_output_format.PNG)
 
 Step 3 (Optional): repertoire specificity landscape visualization (require Comut).
 ```
