@@ -31,11 +31,11 @@ core_analysis.tcr2tcr(infile=infile, outprefix=outprefix, encoder=model, DB=DB, 
 ```
 Log message (the CUDA_ERROR_NO_DEVICE warning may occur if no gpu is detected, which is fine as we only need cpu to run TCRanno):
 
-![image](https://github.com/LuoPangpang/TCRanno_test/blob/main/imgs/log.PNG)
+![image](https://github.com/deepomicslab/TCRanno/blob/main/imgs/log.PNG)
 
-Example tcr2tcr output format (see all example output files under /demo directory at the main github page):
+Example tcr2tcr output format (see all example output files under /demo):
 
-![image](https://github.com/LuoPangpang/TCRanno_test/blob/main/imgs/tcr2tcr_output_format.PNG)
+![image](https://github.com/deepomicslab/TCRanno/blob/main/imgs/tcr2tcr_output_format.PNG)
 
 Step 2: run tcr2ept, tcr2ag, tcr2org (quantitative annotations) based on tcr2tcr output generated in Step 1.
 ```
@@ -51,18 +51,18 @@ python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --o
 python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --outprefix example --anno_type tcr2ag --k 20
 python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --outprefix example --anno_type tcr2org --k 10
 ```
-Example tcr2org output format (see all example output files under /demo directory at the main github page):
+Example tcr2ag output format (see all example output files under /demo):
 
-![image](https://github.com/deepomicslab/TCRanno/blob/main/imgs/tcr2org_output_format.PNG)
+![image](https://github.com/deepomicslab/TCRanno/blob/main/imgs/tcr2ag_output_format.PNG)
 
 Step 3 (Optional): repertoire specificity landscape visualization (require Comut).
 ```
 #choosing 'all' for anno_type will produce three plots (tcr2ept, tcr2ag, tcr2org)
 python3 plot_landscape.py --tcr2tcr example_tcr2tcr_output.tsv --outprefix example --tcr2ept example_tcr2ept.tsv --tcr2ag example_tcr2ag.tsv --tcr2org example_tcr2org.tsv --anno_type all
 ```
-Example tcr2org visualization plot (see all example plots under /demo directory at the main github page):
+Example tcr2org visualization plot (see all example plots under /demo):
 
-![image](https://github.com/LuoPangpang/TCRanno_test/blob/main/demo/example_tcr2org.png)
+![image](https://github.com/deepomicslab/TCRanno/blob/main/demo/example_tcr2org.png)
 
 ## Parameters
 1. core_analysis.tcr2tcr
