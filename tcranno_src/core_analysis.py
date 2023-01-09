@@ -112,7 +112,7 @@ def tcr2tcr(infile, outprefix, encoder, DB, DB_VDJ, AO_map, header=False, cdr3_a
     db_cdr3s = sorted(list(DB.keys()))
     db_latent = get_norm_latent(db_cdr3s,encoder)
     VJ_map = load_VJ_map()
-    output = 'Index\tRank\tCDR3_sequence\tFrequency\tMatched_Epitope(s) [Matched_Antigen->Matched_Organism]\tWeighted_Score\tc1|c2|c3\tw1|w2|w3\n'
+    output = 'Index\tRank\tCDR3_sequence\tFrequency\tMatched_Epitope(s) [Matched_Antigen->Matched_Organism]\tWeighted_Score\ts_T|s_D|s_E\tw_T|w_D|w_E\n'
     #batch = 200
     t = int(ceil(len(query_cdr3s)/batch))
     if thread == -1:
@@ -160,7 +160,7 @@ def tcr2tcr_df(infile, encoder, DB, DB_VDJ, AO_map, header=False, cdr3_aa_col=No
                 output.append(o)
     else:
         output = FindClosestSeq_batch_lst(query_cdr3s, 1, fractions, db_cdr3s, db_latent, query_latent, DB, DB_VDJ, AO_map, VJ_map, k)
-    colname = ['Index','Rank','CDR3_sequence','Frequency','Matched_Epitope(s) [Matched_Antigen->Matched_Organism]','Weighted_Score','c1|c2|c3','w1|w2|w3']
+    colname = ['Index','Rank','CDR3_sequence','Frequency','Matched_Epitope(s) [Matched_Antigen->Matched_Organism]','Weighted_Score','s_T|s_D|s_E','w_T|w_D|w_E']
     df = pd.DataFrame(output,columns=colname)
     return df
 
