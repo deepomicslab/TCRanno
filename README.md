@@ -1,5 +1,5 @@
 # TCRanno
-Qualitative and Quantitative Annotations of TCR Repertoire Specificity
+Qualitative and Quantitative Annotations of T-Cell Receptor (TCR) Repertoire Specificity
 
 ## Requirements
 Python>=3.7.6 \
