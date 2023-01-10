@@ -218,7 +218,7 @@ if __name__ == '__main__':
         TEST = pickle.load(a)
     encoder1 = model_predict.load_encoder()
     IEDB, IEDB_VDJ, AO_map = core_analysis.load_DB(ref_DB='IEDB')
-    core_analysis.tcr2tcr(infile, outprefix, encoder1, IEDB, IEDB_VDJ, AO_map, header=False, cdr3_aa_col=None, frequency=False, frequency_col=None, count=False, count_col=None, sep=None, k=10, thread=-1)
+    core_analysis.tcr2tcr(infile, outprefix, encoder1, IEDB, IEDB_VDJ, AO_map, header=False, cdr3_aa_col=None, frequency=False, frequency_col=None, count=False, count_col=None, sep=None, k=10, thread=-1, perform_stats=False, limit=None)
     tcr2tcr_res = parse_tcr2tcr_results(outprefix+'_tcr2tcr_output.tsv',TEST,IEDB)
     run_tcrmatch(infile,outprefix+'.tcrmatch.out')
     tcrmatch_res = parse_other_results(outprefix+'.tcrmatch.out',TEST,IEDB)
