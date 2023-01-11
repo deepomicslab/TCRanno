@@ -9,7 +9,7 @@ tensorflow>=2.4.1, levenshtein, pandas, matplotlib, comut, palettable
 pip3 install tensorflow levenshtein pandas comut palettable \
 pip3 install tcranno
 
-## Quick Start (see all demo files under /demo)
+## Quick Start (see all example files under /demo)
 **Step 0: prepare input repertoire file.**\
 For quantitative annotations, the file must have a header line and contain a column of CDR3 amino acid and a column of frequency or count; do not include non-productive (i.e., out-of-frame) sequences. If only qualitative annotations are desired, the file must contain a column of CDR3 amino acid.
 
@@ -38,11 +38,11 @@ Log message (the CUDA_ERROR_NO_DEVICE warning may occur if no gpu is detected, w
 
 ![image](https://github.com/deepomicslab/TCRanno/blob/main/imgs/log.PNG)
 
-Example tcr2tcr output format (see all example output files under /demo):
+Example tcr2tcr output format:
 
 ![image](https://github.com/deepomicslab/TCRanno/blob/main/imgs/tcr2tcr_output_format.PNG)
 
-Step 2: run tcr2ept, tcr2ag, tcr2org (quantitative annotations) based on tcr2tcr output generated in Step 1.
+**Step 2: run tcr2ept, tcr2ag, tcr2org (quantitative annotations) based on tcr2tcr output generated in Step 1.**
 ```
 tcr2tcr_output = 'example_tcr2tcr_output.tsv'
 repertoire_analysis.tcr2ept(tcr2tcr_output, outprefix, AO_map=AO_map, is_tcr2tcr=True, k=30)
@@ -56,7 +56,7 @@ python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --o
 python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --outprefix example --anno_type tcr2ag --k 20
 python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --outprefix example --anno_type tcr2org --k 10
 ```
-Example tcr2ag output format (see all example output files under /demo):
+Example tcr2ag output format:
 
 ![image](https://github.com/deepomicslab/TCRanno/blob/main/imgs/tcr2ag_output_format.PNG)
 
@@ -65,7 +65,7 @@ Step 3 (Optional): repertoire specificity landscape visualization (require Comut
 #choosing 'all' for anno_type will produce three plots (tcr2ept, tcr2ag, tcr2org)
 python3 plot_landscape.py --tcr2tcr example_tcr2tcr_output.tsv --outprefix example --tcr2ept example_tcr2ept.tsv --tcr2ag example_tcr2ag.tsv --tcr2org example_tcr2org.tsv --anno_type all
 ```
-Example tcr2org visualization plot (see all example plots under /demo):
+Example tcr2org visualization plot:
 
 ![image](https://github.com/deepomicslab/TCRanno/blob/main/demo/example_tcr2org.png)
 
