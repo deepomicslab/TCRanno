@@ -19,7 +19,7 @@ if __name__=='__main__':
     for i in range(len(all_files)):
         infile=indir+'/'+all_files[i]
         outprefix = outdir+'/'+all_files[i].split('.tsv')[0]
-        core_analysis.tcr2tcr(infile=infile, outprefix=outprefix, encoder=model, DB=DB, DB_VDJ=DB_VDJ, AO_map=AO_map, header=True, cdr3_aa_col=0, frequency=True, frequency_col=1, sep='\t', k=10, t=num_threads)
+        core_analysis.tcr2tcr(infile=infile, outprefix=outprefix, encoder=model, DB=DB, DB_VDJ=DB_VDJ, AO_map=AO_map, header=True, cdr3_aa_col=0, frequency=True, frequency_col=1, sep='\t', k=10, t=num_threads, limit=1e-4)
         tcr2tcr_output = outprefix+'_tcr2tcr_output.tsv'
         repertoire_analysis.tcr2ept(infile=tcr2tcr_output,outprefix=outprefix,AO_map=AO_map)
         repertoire_analysis.tcr2ag(infile=tcr2tcr_output,outprefix=outprefix,AO_map=AO_map)
