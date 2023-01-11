@@ -49,6 +49,10 @@ repertoire_analysis.tcr2ept(tcr2tcr_output, outprefix, AO_map=AO_map, is_tcr2tcr
 repertoire_analysis.tcr2ag(tcr2tcr_output, outprefix, AO_map=AO_map, is_tcr2tcr=True, k=20)
 repertoire_analysis.tcr2org(tcr2tcr_output, outprefix, AO_map=AO_map, is_tcr2tcr=True, k=10)
 ```
+Example tcr2ag output format:
+
+![image](https://github.com/deepomicslab/TCRanno/blob/main/imgs/tcr2ag_output_format.PNG)
+
 Alternatively, if you don't want to run the above commands within python environment, you can run the wrappers below that do the same thing.
 ```
 python3 run_tcr2tcr.py --infile example_input_repertoire.tsv --outprefix example --cdr3_aa_col 0 --frequency_col 1 --k 10 --limit 1e-4
@@ -56,11 +60,8 @@ python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --o
 python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --outprefix example --anno_type tcr2ag --k 20
 python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --outprefix example --anno_type tcr2org --k 10
 ```
-Example tcr2ag output format:
 
-![image](https://github.com/deepomicslab/TCRanno/blob/main/imgs/tcr2ag_output_format.PNG)
-
-Step 3 (Optional): repertoire specificity landscape visualization (require Comut).
+**Step 3 (Optional): repertoire specificity landscape visualization (require Comut).**
 ```
 #choosing 'all' for anno_type will produce three plots (tcr2ept, tcr2ag, tcr2org)
 python3 plot_landscape.py --tcr2tcr example_tcr2tcr_output.tsv --outprefix example --tcr2ept example_tcr2ept.tsv --tcr2ag example_tcr2ag.tsv --tcr2org example_tcr2org.tsv --anno_type all
