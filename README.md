@@ -10,20 +10,22 @@ pip3 install tensorflow levenshtein pandas comut palettable \
 pip3 install tcranno
 
 ## Quick Start (see all demo files under /demo)
-Step 0: prepare input repertoire file. For quantitative annotations, the file must contain a column of CDR3 aa and a column of frequency or count; if only qualitative annotations are desired, the file must contain a column of CDR3 aa.
-![image](https://github.com/deepomicslab/TCRanno/blob/main/imgs/input_format.PNG)
+**Step 0: prepare input repertoire file.**\
+For quantitative annotations, the file must have a header line and contain a column of CDR3 amino acid and a column of frequency or count; do not include non-productive (i.e., out-of-frame) sequences. If only qualitative annotations are desired, the file must contain a column of CDR3 amino acid.
 
-Step 1: run tcr2tcr (qualitative annotations) for input repertoire. The 'example' directory can be find under the path where tcranno is installed.
+![image](https://github.com/deepomicslab/TCRanno/blob/main/imgs/input_format_resize.PNG)
+
+**Step 1: run tcr2tcr (qualitative annotations) for input repertoire.**
 ```
 from tcranno import *
 model = model_predict.load_encoder()
 DB, DB_VDJ, AO_map = core_analysis.load_DB(ref_DB='IEDB')
-infile = 'example/example_input_repertoire.tsv'
+infile = 'example/example_input_repertoire.tsv' #The 'example' directory can be find under the path where tcranno is installed.
 outprefix = 'example'
-core_analysis.tcr2tcr(infile=infile, outprefix=outprefix, encoder=model, DB=DB, DB_VDJ=DB_VDJ, AO_map=AO_map, header=True, cdr3_aa_col=0, frequency=True, frequency_col=1, sep='\t', k=10)
+core_analysis.tcr2tcr(infile=infile, outprefix=outprefix, encoder=model, DB=DB, DB_VDJ=DB_VDJ, AO_map=AO_map, header=True, cdr3_aa_col=0, frequency=True, frequency_col=1, sep='\t', k=10, limit=1e-4)
 
 # speed up using multi-processing
-core_analysis.tcr2tcr(infile=infile, outprefix=outprefix, encoder=model, DB=DB, DB_VDJ=DB_VDJ, AO_map=AO_map, header=True, cdr3_aa_col=0, frequency=True, frequency_col=1, sep='\t', k=10, thread = -1)
+core_analysis.tcr2tcr(infile=infile, outprefix=outprefix, encoder=model, DB=DB, DB_VDJ=DB_VDJ, AO_map=AO_map, header=True, cdr3_aa_col=0, frequency=True, frequency_col=1, sep='\t', k=10, thread=-1, limit=1e-4)
 
 # If the input file has a header and cdr3_aa column, but no frequency/count column
 aa_col_name = 'name-of-the-cdr3-aa-column'
@@ -43,13 +45,13 @@ Example tcr2tcr output format (see all example output files under /demo):
 Step 2: run tcr2ept, tcr2ag, tcr2org (quantitative annotations) based on tcr2tcr output generated in Step 1.
 ```
 tcr2tcr_output = 'example_tcr2tcr_output.tsv'
-repertoire_analysis.tcr2ept(tcr2tcr_output, outprefix, AO_map=AO_map, is_tcr2tcr=True, k=30, limit=1e-4)
-repertoire_analysis.tcr2ag(tcr2tcr_output, outprefix, AO_map=AO_map, is_tcr2tcr=True, k=20, limit=1e-4)
-repertoire_analysis.tcr2org(tcr2tcr_output, outprefix, AO_map=AO_map, is_tcr2tcr=True, k=10, limit=1e-4)
+repertoire_analysis.tcr2ept(tcr2tcr_output, outprefix, AO_map=AO_map, is_tcr2tcr=True, k=30)
+repertoire_analysis.tcr2ag(tcr2tcr_output, outprefix, AO_map=AO_map, is_tcr2tcr=True, k=20)
+repertoire_analysis.tcr2org(tcr2tcr_output, outprefix, AO_map=AO_map, is_tcr2tcr=True, k=10)
 ```
 Alternatively, if you don't want to run the above commands within python environment, you can run the wrappers below that do the same thing.
 ```
-python3 run_tcr2tcr.py --infile example_input_repertoire.tsv --outprefix example --cdr3_aa_col 0 --frequency_col 1 --k 10
+python3 run_tcr2tcr.py --infile example_input_repertoire.tsv --outprefix example --cdr3_aa_col 0 --frequency_col 1 --k 10 --limit 1e-4
 python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --outprefix example --anno_type tcr2ept --k 30
 python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --outprefix example --anno_type tcr2ag --k 20
 python3 run_tcr2eao.py --infile example_tcr2tcr_output.tsv --is_tcr2tcr True --outprefix example --anno_type tcr2org --k 10
@@ -89,31 +91,37 @@ Example tcr2org visualization plot (see all example plots under /demo):
     the epitope-to-antigen-to-organism map for all the epitopes in the reference database. The default AO_map contains mapping information for all epitopes (total: 1290) in the 'DB_FULL' database.
     
 --header: 
-    whether the input file has a header, defualt=False.
+    whether the input file has a header, default=False.
 
 --cdr3_aa_col: 
     the column name (a string) or the column index (a number starting from 0, i.e., 0 for the first column) for the cdr3_aa column. If cdr3_aa_col is not given, the programme automatically take it as a single-column file without header.
 
 --frequency: 
-    whether the input file has a frequency column, defualt=False.
+    whether the input file has a frequency column, default=False.
 
 --frequency_col: 
     the column name (a string) or the column index (a number starting from 0, i.e., 0 for the first column) for the freuquency column.
     
 --count: 
-    whether the input file has a count column, defualt=False. If frequency column is given, the count column will be ignored.
+    whether the input file has a count column, default=False. If frequency column is given, the count column will be ignored.
 
 --count_col: 
     the column name (a string) or the column index (a number starting from 0, i.e., 0 for the first column) for the count column.
 
 --sep: 
-    the delimitor of the input file, defualt='\s+'.
+    the delimitor of the input file, default='\s+'.
 
 --k: 
-    the number of closest TCRs within the reference database to be output for each query if not completely matching. Defualt=10. Note that the quantitative annotations (tcr2ept/tcr2ag/tcr2org) only take into account the best choice (k=1) for each input TCR sequence, so k=1 will be enough for the subsequent steps. Choose k=1 if you don't need multiple matched TCR sequences for each input, which can save space and time.
+    the number of closest TCRs within the reference database to be output for each query if not completely matching. Default=10. Note that the quantitative annotations (tcr2ept/tcr2ag/tcr2org) only take into account the best choice (k=1) for each input TCR sequence, so k=1 will be enough for the subsequent steps. Choose k=1 if you don't need multiple matched TCR sequences for each input, which can save space and time.
 
 --thread: 
     the number of threads (cpus) to be used, default=1. Specify thread=-1 for all cpus.
+    
+--perform_stat:
+    whether or not to compute number of total sequences (after filter), number of complete matches, productive fraction, low/medium/high-frequency clonotype fraction and effective fraction. The output stats are shown as header lines in the tcr2tcr output file. Default=True.
+
+--limit: 
+    the filter which discard TCRs with clonotype frequency lower than the specified limit. Default=None.
 ```
 
 2. repertoire_analysis.tcr2ept, repertoire_analysis.tcr2ag, repertoire_analysis.tcr2org
@@ -134,6 +142,6 @@ Example tcr2org visualization plot (see all example plots under /demo):
     the expected hit rate for the predicted match. Used to calculate a weighted fraction. Default=0.2.
 
 --limit: 
-    the filter which discard epitopes having a TCR-sepcific fraction lower than the specified limit. Defualt=1e-4. Setting limit=0 will turn off the filter.
+    the filter which discard epitopes having a TCR-sepcific fraction lower than the specified limit. Default=1e-4. Setting limit=0 will turn off the filter.
 
 ```
