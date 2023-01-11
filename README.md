@@ -9,7 +9,10 @@ tensorflow>=2.4.1, levenshtein, pandas, matplotlib, comut, palettable
 pip3 install tensorflow levenshtein pandas comut palettable \
 pip3 install tcranno
 
-## Quick Start
+## Quick Start (see all demo files under /demo)
+Step 0: prepare input repertoire file. For quantitative annotations, the file must contain a column of CDR3 aa and a column of frequency or count; if only qualitative annotations are desired, the file must contain a column of CDR3 aa.
+![image](https://github.com/deepomicslab/TCRanno/blob/main/imgs/input_format.PNG)
+
 Step 1: run tcr2tcr (qualitative annotations) for input repertoire. The 'example' directory can be find under the path where tcranno is installed.
 ```
 from tcranno import *
