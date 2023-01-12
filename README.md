@@ -13,7 +13,7 @@ pip3 install tcranno
 **Step 0: prepare input repertoire file.**\
 For quantitative annotations, the file must have a header line and contain a column of CDR3 amino acid and a column of frequency or count; do not include non-productive (i.e., out-of-frame) sequences. If only qualitative annotations are desired, the file must contain a column of CDR3 amino acid.
 
-![image](https://github.com/deepomicslab/TCRanno/blob/main/imgs/input_format_resized2.PNG)
+![image](https://github.com/deepomicslab/TCRanno/blob/main/imgs/input_format_resized4.PNG)
 
 **Step 1: run tcr2tcr (qualitative annotations) for input repertoire.**
 ```
